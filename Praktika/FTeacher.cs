@@ -50,7 +50,7 @@ namespace Praktika
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Проверьте данные", "Лшибка");
+                    MessageBox.Show("Проверьте данные", "Ошибка");
                 }
             }
             else
@@ -68,6 +68,59 @@ namespace Praktika
             {
                 string nameFile = openFile.FileName;
                 image = File.ReadAllBytes(nameFile);
+            }
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Teacher currentTeacher = context.GetTable<Teacher>().FirstOrDefault(x => x.id == Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+            textBox1.Text = currentTeacher.surname;
+            image = currentTeacher.photo_t;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+            {
+                try
+                {
+                Teacher currentTeacher = context.GetTable<Teacher>().FirstOrDefault(x => x.id == Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+                currentTeacher.surname = textBox1.Text;
+                currentTeacher.photo_t = image;
+                context.SubmitChanges();
+                MessageBox.Show("Данные изменены", "Успешно");
+                Table<Teacher> teachers = context.GetTable<Teacher>();
+                dataGridView1.DataSource = teachers.ToList();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Проверьте данные", "Ошибка");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введите фамилию", "Ошибка");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DialogResult d = MessageBox.Show("Удалить выбранную запись?", "Удаление", MessageBoxButtons.OKCancel);
+            int id = 0;
+            id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+            if (d == DialogResult.OK && id != 0)
+            {
+                try
+                {
+                    Teacher dc = context.GetTable<Teacher>().FirstOrDefault(x => x.id == id);
+                    context.GetTable<Teacher>().DeleteOnSubmit(dc);
+                    context.SubmitChanges();
+                    Table<Teacher> Students = context.GetTable<Teacher>();
+                    dataGridView1.DataSource = Students.ToList();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Данные нельзя удалить, так как могут быть нарушены связи в БД.");
+                }
             }
         }
     }

@@ -96,5 +96,25 @@ namespace Praktika
                 dataGridView1.DataSource = zapros.ToList();
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                
+            }
+            if (comboBox1.SelectedIndex == 1)
+            {
+                
+            }
+            if (comboBox1.SelectedIndex == 2)
+            {
+                
+            }
+            if (comboBox1.SelectedIndex == 3)
+            {
+                
+            }
+        }
     }
 }
