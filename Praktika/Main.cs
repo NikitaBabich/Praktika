@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -114,6 +115,31 @@ namespace Praktika
             if (comboBox1.SelectedIndex == 3)
             {
                 //фильтрация не работает
+            }
+        }
+        public byte[] image;
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                Student currentStudent = context.GetTable<Student>().FirstOrDefault(x => x.id == Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+                image = currentStudent.photo_s;
+                Photo p = new Photo(image);
+                p.Show();
+            }
+            if (comboBox1.SelectedIndex == 1)
+            {
+                Gruop currentGroup = context.GetTable<Gruop>().FirstOrDefault(x => x.id == Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+                image = currentGroup.photo_g;
+                Photo p = new Photo(image);
+                p.Show();
+            }
+            if (comboBox1.SelectedIndex == 2)
+            {
+                Teacher currentTeacher = context.GetTable<Teacher>().FirstOrDefault(x => x.id == Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+                image = currentTeacher.photo_t;
+                Photo p = new Photo(image);
+                p.Show();
             }
         }
     }
