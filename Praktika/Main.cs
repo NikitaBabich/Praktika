@@ -101,19 +101,19 @@ namespace Praktika
         {
             if (comboBox1.SelectedIndex == 0)
             {
-                //фильтрация
+                //фильтрация не работает
             }
             if (comboBox1.SelectedIndex == 1)
             {
-                //фильтрация
+                //фильтрация не работает
             }
             if (comboBox1.SelectedIndex == 2)
             {
-                //фильтрация
+                //фильтрация не работает
             }
             if (comboBox1.SelectedIndex == 3)
             {
-                //фильтрация
+                //фильтрация не работает
             }
         }
     }
