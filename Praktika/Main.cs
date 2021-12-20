@@ -102,19 +102,22 @@ namespace Praktika
         {
             if (comboBox1.SelectedIndex == 0)
             {
-                //фильтрация не работает
+                var poisk = context.GetTable<Student>().Where(X => X.surname.Contains(textBox1.Text));
+                dataGridView1.DataSource = poisk.ToList();
             }
             if (comboBox1.SelectedIndex == 1)
             {
-                //фильтрация не работает
+                var poisk = context.GetTable<Gruop>().Where(X => X.name.Contains(textBox1.Text));
+                dataGridView1.DataSource = poisk.ToList();
             }
             if (comboBox1.SelectedIndex == 2)
             {
-                //фильтрация не работает
+                var poisk = context.GetTable<Teacher>().Where(X => X.surname.Contains(textBox1.Text));
+                dataGridView1.DataSource = poisk.ToList();
             }
             if (comboBox1.SelectedIndex == 3)
             {
-                //фильтрация не работает
+                textBox1.Text = "Невозможно осуществить поиск";
             }
         }
         public byte[] image;
