@@ -130,5 +130,11 @@ namespace Praktika
                 }
             }
         }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            var poisk = context.GetTable<Gruop>().Where(X => X.name.Contains(textBox3.Text));
+            dataGridView1.DataSource = poisk.ToList();
+        }
     }
 }
